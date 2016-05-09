@@ -1,0 +1,11 @@
+
+
+ <div class ="">
+  <ul>   
+    <li ng-repeat = "item in items" ng-click="show(item.id)">
+      <div class="data"> <h3>{{item.lastName}}, {{item.firstName}}</h3> (<span class="text-muted">{{item.email}}, {{item.country}}</span>)
+      </div>
+    </li>   
+  </ul>
+ </div>
+<div class="noData" ng-show="arrayEmpty()">You dont have any Address</div>

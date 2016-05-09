@@ -1,0 +1,97 @@
+<h2 ng-show={{address}}>{{address.lastName}}, {{address.firstName}}</h2>
+
+
+<form name="addressForm" novalidate ng-hide={{address}}>
+
+  <div class="form-group row" ng-class="{'has-error':addressForm.firstname.$invalid && !addressForm.firstname.$pristine}">
+    <label for="firstName" class="col-sm-5 form-control-label">First Name</label>
+    <div class="col-sm-5" >
+      <input id ="firstName" name="firstnameUser" class="form-control" type="text" ng-model="user.firstName" required>      
+      <p ng-show="addressForm.firstnameUser.$invalid" >This field is Required</p>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-class="{'has-error':addressForm.lastname.$invalid && !addressForm.lastname.$pristine}">
+
+    <label for="lastName" class="col-sm-5">Last Name</label>
+    <div class="col-sm-5" >
+      <input id="lastName" name="lastnameUser" class="form-control" type="text" ng-model="user.lastName" required/>
+      <p ng-show="addressForm.lastnameUser.$invalid">This field is Required</p>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-class="{'has-error':addressForm.email.$invalid && !addressForm.email.$pristine}">
+    <label for="email" class="col-sm-5" >Email</label>
+    <div class="col-sm-5" >
+      <input type="email" name="emailUser" class="form-control" id="email" ng-model="user.email" required/>
+      <p ng-show="addressForm.emailUser.$invalid">This field is Require</p>
+    </div>
+  </div>
+
+
+  <div class="form-group row" ng-class="{'has-error':addressForm.country.$invalid && !addressForm.country.$pristine}">
+    <label for="country" class="col-sm-5" >Country</label>
+    <div class="col-sm-5">
+  				<country-select ng-model="user.country" class="form-control" required></country-select>
+          <p ng-show="addressForm.country.$invalid">This field is Require</p>
+  		</div>
+  </div>
+
+   <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary" ng-disabled="addressForm.$invalid" ng-click="save(user)">Save</button>
+      <button type="submit" class="btn btn-danger" ng-click="cleanForm()">Reset</button>
+    </div>	
+  </div>
+
+</form>
+
+
+
+
+
+
+<!-- otro form para editar y eliminar -->
+
+<form name="userForm" novalidate ng-if="address">
+
+  <div class="form-group row" ng-class="{'has-error':userForm.firstname.$invalid && !userForm.firstname.$pristine}">
+    <label for="firstName" class="col-sm-5 form-control-label">First Name</label>
+    <div class="col-sm-5" >
+      <input id ="firstName" name="firstnameUser" class="form-control" type="text" ng-model="address.firstName" required>      
+      <p ng-show="userForm.firstnameUser.$invalid" >This field is Required</p>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-class="{'has-error':userForm.lastname.$invalid && !userForm.lastname.$pristine}">
+    <label for="lastName" class="col-sm-5">Last Name</label>
+    <div class="col-sm-5" >
+      <input id="lastName" name="lastnameUser" class="form-control" type="text" ng-model="address.lastName" required/>
+      <p ng-show="userForm.lastnameUser.$invalid">This field is Required</p>
+    </div>
+  </div>
+
+  <div class="form-group row" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
+    <label for="email" class="col-sm-5" >Email</label>
+    <div class="col-sm-5" >
+      <input type="email" name="emailUser" class="form-control" id="email" ng-model="address.email" required/>
+      <p ng-show="userForm.emailUser.$invalid">This field is Require</p>
+    </div>
+  </div>
+
+   <div class="form-group row" ng-class="{'has-error':userForm.country.$invalid && !userForm.country.$pristine}">
+    <label for="country" class="col-sm-5" >Country</label>
+    <div class="col-sm-5">
+  				<country-select ng-model="address.country" class="form-control" required></country-select>
+  		</div>
+  </div>
+
+   <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="update(address)">Update</button>
+      <button type="submit" class="btn btn-danger" ng-click="delete(address)">Delete</button>
+    </div>
+
+  </div>
+
+</form>
